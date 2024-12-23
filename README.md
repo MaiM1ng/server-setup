@@ -39,19 +39,19 @@ alias host_proxy_unset="proxy_unset"
 
 ```diff
 ```diff
-29,30c29
-<             # CpuArch=$(get_cpu_arch "dpkg-architecture -qDEB_HOST_ARCH_CPU" "dpkg-architecture -qDEB_BUILD_ARCH_CPU" "uname -m")
-<           CpuArch=$(amd64)
+29c29,30
+<             CpuArch=$(get_cpu_arch "dpkg-architecture -qDEB_HOST_ARCH_CPU" "dpkg-architecture -qDEB_BUILD_ARCH_CPU" "uname -m")
 ---
->             CpuArch=$(get_cpu_arch "dpkg-architecture -qDEB_HOST_ARCH_CPU" "dpkg-architecture -qDEB_BUILD_ARCH_CPU" "uname -m")
-32c31
-<         "centos"|"fedora"|"rhel"|"rocky")
+>             # CpuArch=$(get_cpu_arch "dpkg-architecture -qDEB_HOST_ARCH_CPU" "dpkg-architecture -qDEB_BUILD_ARCH_CPU" "uname -m")
+>           CpuArch=$(amd64)
+31c32
+<         "centos"|"fedora"|"rhel")
 ---
->         "centos"|"fedora"|"rhel")
-34c33
-<             CpuArch=$(get_cpu_arch "arch" "uname")
+>         "centos"|"fedora"|"rhel"|"rocky")
+33c34
+<             CpuArch=$(get_cpu_arch "uname -m" "arch" "uname")
 ---
->             CpuArch=$(get_cpu_arch "uname -m" "arch" "uname")
+>             CpuArch=$(get_cpu_arch "arch" "uname")
 ```
 
 项目clone下来以后修改`.env`中的订阅链接
@@ -139,3 +139,17 @@ sudo fc-cache -fv # 刷新系统字体缓存
 ```
 
 ## Neovim & lazyvim
+
+下载已经安装好的包
+
+```Bash
+wget $(NVIM)
+```
+
+解压缩
+
+```Bash
+tar -zxvf $(NVIM)
+```
+
+然后配置环境变量
